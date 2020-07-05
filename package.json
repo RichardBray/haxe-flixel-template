@@ -1,0 +1,23 @@
+{
+  "name": "game-jam-template",
+  "version": "1.0.0",
+  "description": "[![CI](https://img.shields.io/github/workflow/status/HaxeFlixel/game-jam-template/CI.svg?logo=github)](https://github.com/HaxeFlixel/game-jam-template/actions?query=workflow%3ACI)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichardBray/game-jam-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RichardBray/game-jam-template/issues"
+  },
+  "homepage": "https://github.com/RichardBray/game-jam-template#readme",
+  "dependencies": {
+    "lix": "^15.9.0"
+  }
+}
