@@ -1,15 +1,31 @@
 {
 	"lineEnds": {
-		"leftCurly": "both",
+    "leftCurly": "after",
+    "emptyCurly": "noBreak",
 		"rightCurly": "both",
 		"objectLiteralCurly": {
 			"leftCurly": "after"
 		}
 	},
+  "whitespace": {
+    "arrowFunctionsPolicy": "around",
+    "functionTypeHaxe3Policy": "around",
+    "functionTypeHaxe4Policy": "around"
+  },	
 	"sameLine": {
-		"ifElse": "next",
-		"doWhile": "next",
-		"tryBody": "next",
+		"ifBody": "same",
+		"ifElse": "same",
+		"doWhile": "same",
+		"tryBody": "same",
 		"tryCatch": "next"
+	},
+	"emptyLines":{
+		"finalNewline": false
+	},
+	"wrapping": {
+		"multiVar": {
+			"defaultWrap": "onePerLineAfterFirst"
+		},
+		"maxLineLength": 80
 	}
 }
