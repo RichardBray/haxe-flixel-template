@@ -9,5 +9,6 @@
 			"source.sortImports": true
 		}
 	},
-	"haxe.enableExtendedIndentation": true
+	"haxe.enableExtendedIndentation": true,
+	"lime.executable": "npx lime"
 }
