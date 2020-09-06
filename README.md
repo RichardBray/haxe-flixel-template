@@ -1,7 +1,5 @@
 # game-jam-template
 
-[![CI](https://img.shields.io/github/workflow/status/HaxeFlixel/game-jam-template/CI.svg?logo=github)](https://github.com/HaxeFlixel/game-jam-template/actions?query=workflow%3ACI)
-
 This is a HaxeFlixel template that is particularly helpful for game jams. It consists of:
 
 - An empty HaxeFlixel project generated with the `flixel template` command (with config files for Visual Studio Code).
