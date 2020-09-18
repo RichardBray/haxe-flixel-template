@@ -1,4 +1,5 @@
-# game-jam-template (with Lix)
+# haxe-flixel-template
+*Previously this was called game-jam-template*
 
 This is a HaxeFlixel template that is particularly helpful for game jams. It consists of:
 
