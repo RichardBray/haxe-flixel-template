@@ -14,13 +14,7 @@ This is a [template repository](https://help.github.com/en/github/creating-cloni
 ### 2. As a non-Github template
 ```sh
 npx degit RichardBray/game-jam-template my-flixel-game
-```
-
-```sh
 npm install or npm i
-```
-
-```sh
 npm start
 ```
 
