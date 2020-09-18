@@ -4,7 +4,10 @@
   "description": "[![CI](https://img.shields.io/github/workflow/status/HaxeFlixel/game-jam-template/CI.svg?logo=github)](https://github.com/HaxeFlixel/game-jam-template/actions?query=workflow%3ACI)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx concurrently \"npm run watch\" \"npm run server\"",
+    "watch": "npx watchman-make -p 'source/**/*.hx' -r 'sh watcher.sh'",
+    "server": "npx http-server export/html5/bin",
+    "comp-server": "npx haxe -v --wait 6000"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,9 @@
   },
   "homepage": "https://github.com/RichardBray/game-jam-template#readme",
   "dependencies": {
+    "concurrently": "^5.2.0",
+    "fb-watchman": "^2.0.1",
+    "http-server": "^0.12.3",    
     "lix": "^15.9.0"
   }
 }
