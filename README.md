@@ -9,13 +9,20 @@ This is a HaxeFlixel template that is particularly helpful for game jams. It con
 ### 1. As a Github template
 This is a [template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template), simply click "Use this template" to create a copy of it on your own GitHub account!
 
+![](https://help.github.com/assets/images/help/repository/use-this-template-button.png)
+
 ### 2. As a non-Github template
 ```sh
 npx degit RichardBray/game-jam-template my-flixel-game
-npm install or npm i
-
 ```
-![](https://help.github.com/assets/images/help/repository/use-this-template-button.png)
+
+```sh
+npm install or npm i
+```
+
+```sh
+npm start
+```
 
 **Notes:**
 - For the first GitHub pages deployment, it can take around 10 minutes for the page to show up. Also, the repository needs to be public.
