@@ -1,9 +1,8 @@
-# haxe-flixel-template
-*Previously this was called game-jam-template*
+<h1 align="center">HaxeFlixel Game Template</h1>
 
-This is a HaxeFlixel template that is particularly helpful for game jams. It consists of:
+<h3 align="center">Everything you need to start making your game in 3 terminal commands</h3>
 
-- An empty HaxeFlixel project generated with the `flixel template` command (with config files for Visual Studio Code).
+<p align="center">This is a HaxeFlixel template that is particularly helpful for game jams. It consists of - An empty HaxeFlixel project generated with the `flixel template` command (with config files for Visual Studio Code).</p>
 
 ## Installation
 
