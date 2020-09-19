@@ -8,7 +8,7 @@
 
 ---
 
-*This template requires [Nodejs](https://nodejs.org/en/) to be installed to run most of the commands below.*
+*This template requires [Nodejs](https://nodejs.org/en/)(v6 or higher) to be installed to run most of the commands below.*
 
 ### 1. Download
 
