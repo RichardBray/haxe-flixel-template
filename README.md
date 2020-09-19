@@ -8,7 +8,7 @@
 
 ---
 
-*This template requires [Nodejs](https://nodejs.org/en/)(v6 or higher) to be installed to run most of the commands below.*
+*This template requires [Nodejs](https://nodejs.org/en/) (v6 or higher) to be installed to run most of the commands below.*
 
 ### 1. Download
 
@@ -31,7 +31,7 @@ npm i
 ```
 
 ### 3. Build
-It's recommended to have a compilation server when developing to cache the compilation, this should be done in a separate tab with the following command.
+It's recommended to run the [Haxe compilation server](https://youtu.be/3crCJlVXy-8) when developing to cache the compilation, this should be done in a separate terminal window/tab with the following command.
 ```sh
 npm run comp-server
 ```
