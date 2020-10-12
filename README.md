@@ -12,12 +12,6 @@
 
 ### 1. Download
 
-#### a. As a Github template
-This is a [template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template), simply click "Use this template" to create a copy of it on your own GitHub account!
-
-![](https://help.github.com/assets/images/help/repository/use-this-template-button.png)
-
-#### b. As a non-Github template
 You can also create a new project based on this template using [degit](https://github.com/Rich-Harris/degit) which will ignore all .git related files.
 ```sh
 npx degit RichardBray/game-jam-template my-flixel-game
@@ -36,7 +30,7 @@ It's recommended to run the [Haxe compilation server](https://youtu.be/3crCJlVXy
 npm run comp-server
 ```
 
-Your .hx files are watched with Facebook's watman plugin. Anytime you save a file it will trigger an automatic rebuild. 
+Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild. 
 ```sh
 npm start 
 ```
