@@ -10,5 +10,5 @@
 		}
 	},
 	"haxe.enableExtendedIndentation": true,
-	"lime.executable": "npx lime"
+	"lime.executable": "npx lix lime"
 }
