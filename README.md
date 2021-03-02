@@ -29,6 +29,7 @@ brew install watchman
 
 Then install package dependencies
 ```sh
+npm i -g lix
 npm i 
 npx lix download
 ```
