@@ -20,8 +20,17 @@ cd my-flixel-game
 
 ### 2. Install dependencies
 
+First [install watchman[(https://facebook.github.io/watchman/docs/install.html#buildinstall) locally
+
+```sh
+brew update
+brew install watchman
+```
+
+Then install package dependencies
 ```sh
 npm i 
+npx lix download
 ```
 
 ### 3. Build
