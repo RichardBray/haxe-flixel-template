@@ -1,11 +1,11 @@
 {
   "name": "haxe-flixel-template",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "HaxeFlixel game template powered by Lix and Nodejs. The fastest way to start building a HaxeFlixel game.",
   "main": "index.js",
   "scripts": {
     "start": "npx concurrently \"npm run watch\" \"npm run server\"",
-    "watch": "npx watchman-make -p 'source/**/*.hx' -r 'sh watcher.sh'",
+    "watch": "watchman-make -p 'source/**/*.hx' -r 'sh watcher.sh'",
     "server": "npx http-server export/html5/bin",
     "comp-server": "npx haxe -v --wait 6000"
   },
