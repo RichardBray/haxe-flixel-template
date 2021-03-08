@@ -10,5 +10,6 @@
 		}
 	},
 	"haxe.enableExtendedIndentation": true,
-	"lime.executable": "npx lix lime"
+	"lime.executable": "npx lix lime",
+	"editor.tabSize": 2
 }
