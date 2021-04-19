@@ -37,7 +37,17 @@
     "callParameter": {
       "defaultWrap": "onePerLine",
       "defaultLocation": "afterLast",
-      "rules": []
+      "rules": [
+        {
+          "conditions": [
+            {
+              "cond": "lineLength <= n",
+              "value": 80
+            }
+          ],
+          "type": "fillLine"
+        }
+      ]
     },
     "maxLineLength": 80
   }
