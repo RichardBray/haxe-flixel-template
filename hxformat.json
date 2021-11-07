@@ -1,31 +1,54 @@
 {
-	"lineEnds": {
+  "lineEnds": {
     "leftCurly": "after",
     "emptyCurly": "noBreak",
-		"rightCurly": "both",
-		"objectLiteralCurly": {
-			"leftCurly": "after"
-		}
-	},
+    "rightCurly": "both",
+    "objectLiteralCurly": {
+      "leftCurly": "after"
+    }
+  },
   "whitespace": {
     "arrowFunctionsPolicy": "around",
     "functionTypeHaxe3Policy": "around",
-    "functionTypeHaxe4Policy": "around"
-  },	
-	"sameLine": {
-		"ifBody": "same",
-		"ifElse": "same",
-		"doWhile": "same",
-		"tryBody": "same",
-		"tryCatch": "next"
-	},
-	"emptyLines":{
-		"finalNewline": false
-	},
-	"wrapping": {
-		"multiVar": {
-			"defaultWrap": "onePerLineAfterFirst"
-		},
-		"maxLineLength": 80
-	}
+    "functionTypeHaxe4Policy": "around",
+    "typeHintColonPolicy": "after",
+    "objectFieldColonPolicy": "after"
+  },
+  "sameLine": {
+    "ifBody": "same",
+    "ifElse": "same",
+    "doWhile": "same",
+    "tryBody": "same",
+    "tryCatch": "next"
+  },
+  "emptyLines": {
+    "finalNewline": false,
+    "importAndUsing": {
+      "betweenImportsLevel": "firstLevelPackage",
+      "betweenImports": 1,
+      "beforeUsing": 1
+    },
+    "maxAnywhereInFile": 1
+  },
+  "wrapping": {
+    "multiVar": {
+      "defaultWrap": "onePerLineAfterFirst"
+    },
+    "callParameter": {
+      "defaultWrap": "onePerLine",
+      "defaultLocation": "afterLast",
+      "rules": [
+        {
+          "conditions": [
+            {
+              "cond": "lineLength <= n",
+              "value": 80
+            }
+          ],
+          "type": "fillLine"
+        }
+      ]
+    },
+    "maxLineLength": 80
+  }
 }
