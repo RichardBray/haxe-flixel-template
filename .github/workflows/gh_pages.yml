@@ -1,0 +1,23 @@
+# name: Deply to Github pages
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 🛎️ Checkout
+#         uses: actions/checkout@v2.3.1
+
+#       - name: 🔧 Install and Build
+#         run: |
+#           npm i lix
+#           npx lix download
+#           npx lix lime build html5 -minify
+
+#       - name: 🚀 Deploy
+#         uses: JamesIves/github-pages-deploy-action@4.0.0
+#         with:
+#           branch: gh-pages
+#           folder: ./export/html5/bin

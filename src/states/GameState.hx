@@ -9,9 +9,7 @@ import utils.Colors;
 import utils.LoadFile;
 
 class GameState extends FlxState {
-	final pjson = LoadFile.json(
-		"./package.json"
-	);
+	final pjson = LoadFile.json("./package.json");
 
 	var version = "";
 
@@ -21,24 +19,15 @@ class GameState extends FlxState {
 		version = pjson.version;
 
 		FlxAssets.FONT_DEFAULT = "assets/fonts/OpenSans-Regular.ttf";
-		add(
-			new FlxText(
-				'Hello World $version',
-				32
-			).screenCenter()
-		);
+		add(new FlxText('Hello World $version', 32).screenCenter());
 
 		FlxG.autoPause = false;
 		FlxG.camera.antialiasing = true;
-
-		#if !debug
+		FlxG.mouse.useSystemCursor = true;
 		FlxG.mouse.visible = false;
-		#end
 	}
 
-	override public function update(elapsed: Float) {
-		super.update(
-			elapsed
-		);
+	override function update(elapsed: Float) {
+		super.update(elapsed);
 	}
 }

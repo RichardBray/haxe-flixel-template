@@ -22,7 +22,7 @@
     "tryCatch": "next"
   },
   "emptyLines": {
-    "finalNewline": false,
+    "finalNewline": true,
     "importAndUsing": {
       "betweenImportsLevel": "firstLevelPackage",
       "betweenImports": 1,

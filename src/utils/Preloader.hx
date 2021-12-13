@@ -3,34 +3,30 @@ package utils;
 import flash.Lib;
 import flash.text.TextField;
 import flash.text.TextFormat;
+
 import flixel.system.FlxBasePreloader;
 
-// @:font("assets/images/preloader/corners.png")
-// private class CustomFont extends Font {}
 class Preloader extends FlxBasePreloader {
-	var _text:TextField;
+	var text: TextField;
 
-	override public function new(MinDisplayTime:Float = 0,
-			?AllowedURLs:Array<String>) {
-		super(MinDisplayTime, AllowedURLs);
+	public function new(minDisplayTime: Float = 0,
+			?allowedURLs: Array<String>) {
+		super(minDisplayTime, allowedURLs);
 	}
 
 	override function create() {
-		var _pageWidth:Int = Lib.current.stage.stageWidth;
-		var _pageHeight:Int = Lib.current.stage.stageHeight;
+		final pageWidth: Int = Lib.current.stage.stageWidth;
+		final pageHeight: Int = Lib.current.stage.stageHeight;
 
-		// Loading text
-		// Font.registerFont(CustomFont); if custom front
-		_text = new TextField();
-		_text.defaultTextFormat = new TextFormat("Arial", 32, 0xffffffff);
-		_text.embedFonts = true;
-		_text.selectable = false;
-		_text.multiline = false;
-		_text.x = _pageWidth - 250;
-		_text.y = _pageHeight - 80;
-		_text.width = 200;
-		_text.text = "Loading";
-		addChild(_text);
+		text = new TextField();
+		text.defaultTextFormat = new TextFormat("Arial", 32, 0xffffffff);
+		text.embedFonts = true;
+		text.selectable = false;
+		text.multiline = false;
+		text.x = pageWidth - 250;
+		text.y = pageHeight - 80;
+		text.width = 200;
+		addChild(text);
 
 		super.create();
 	}
@@ -43,18 +39,18 @@ class Preloader extends FlxBasePreloader {
 		super.destroy();
 	}
 
-	override public function onLoaded() {
+	override function onLoaded() {
 		super.onLoaded();
-		_loaded = false;
+		this._loaded = false;
 		// Load after the page gets to 100%
-		haxe.Timer.delay(() -> _loaded = true, 50);
+		haxe.Timer.delay(() -> this._loaded = true, 50);
 	}
 
 	/**
 	 * Update is called every frame, passing the current percent loaded. Use this to change your loading bar or whatever.
-	 * @param	Percent	The percentage that the project is loaded
+	 * @param	percent	The percentage that the project is loaded
 	 */
-	override public function update(Percent:Float) {
-		_text.text = "Loading " + Std.int(Percent * 100) + "%";
+	override function update(percent: Float) {
+		text.text = 'Loading ${Std.int(percent * 100)}%';
 	}
 }
