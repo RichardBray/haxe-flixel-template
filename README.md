@@ -30,17 +30,18 @@ brew install watchman
 Then install package dependencies
 ```sh
 npm i -g lix
-npm i 
+npm i
 npx lix download
 ```
 
 ### 3. Build
-It's recommended to run the [Haxe compilation server](https://youtu.be/3crCJlVXy-8) when developing to cache the compilation, this should be done in a separate terminal window/tab with the following command.
+
+Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild.
 ```sh
-npm run comp-server
+npm run dev
 ```
 
-Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild. 
+#### Build to HTML5
 ```sh
-npm start 
+npm start
 ```
