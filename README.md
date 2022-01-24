@@ -8,7 +8,7 @@
 
 ---
 
-*This template requires [Nodejs](https://nodejs.org/en/) (v6 or higher) to be installed to run most of the commands below.*
+*This template requires [Node.js](https://nodejs.org/en/) (v6 or higher) to be installed to run most of the commands below.*
 
 ### 1. Download
 
@@ -20,7 +20,7 @@ cd my-flixel-game
 
 ### 2. Install dependencies
 
-First [install watchman[(https://facebook.github.io/watchman/docs/install.html#buildinstall) locally
+First [install watchman](https://facebook.github.io/watchman/docs/install.html#buildinstall) locally
 
 ```sh
 brew update
@@ -45,3 +45,6 @@ npm run dev
 ```sh
 npm start
 ```
+
+Navigate to port **1212** in your browser.
+_http://localhost:1212/_
