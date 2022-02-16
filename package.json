@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RichardBray/game-jam-template.git"
+    "url": "git+https://github.com/RichardBray/haxe-flixel-template.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RichardBray/game-jam-template/issues"
+    "url": "https://github.com/RichardBray/haxe-flixel-template/issues"
   },
-  "homepage": "https://github.com/RichardBray/game-jam-template#readme",
+  "homepage": "https://github.com/RichardBray/haxe-flixel-template#readme",
   "dependencies": {
     "concurrently": "^6.4.0",
     "http-server": "^14.0.0"
