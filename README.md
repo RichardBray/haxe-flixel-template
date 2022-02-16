@@ -41,10 +41,5 @@ Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.
 npm start
 ```
 
-#### Build to HTML5
-```sh
-npm start
-```
-
 Navigate to port **1212** in your browser.
 _http://localhost:1212/_
