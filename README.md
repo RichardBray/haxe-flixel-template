@@ -38,7 +38,7 @@ npx lix download
 
 Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild.
 ```sh
-npm run dev
+npm start
 ```
 
 #### Build to HTML5
