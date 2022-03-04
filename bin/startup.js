@@ -1,50 +1,62 @@
+#!/usr/bin/env node
+
 // @ts-check
-import { exec } from 'child_process';
+import { exec, spawn } from 'node:child_process';
+import { promisify } from 'node:util';
 import logger from './Logger.js';
 import spinner from './Spinner.js';
-import { promisify } from 'util';
 
 const execPromise = promisify(exec);
+const PORT = 1212;
 
 async function main() {
   await buildGameForWeb();
-  await startConcurrently();
+  startConcurrently();
 }
 
 async function buildGameForWeb() {
-  logger.info(`🔨 Doing first build of game`);
+  logger.info('🔨 Doing first build of game');
 
   spinner.start();
 
   try {
-    await execPromise('lix lime build html5');
+    const { stderr } = await execPromise('lix lime build html5');
 
     spinner.stop();
-    logger.success(`🎉 Done!`);
+    logger.success(`✅ Done!`);
 
+    if (stderr) {
+      logger.error(stderr);
+      process.exit(1);
+    }
   } catch (err) {
-    logger.error(`buildGameForWeb Error: ${err}`);
+    logger.error(`buildGameForWeb failed to run: ${err}`);
   }
 }
 
-async function startConcurrently() {
-  logger.info(`👁 Starting server and watcher`);
+function startConcurrently() {
+  logger.info('⏱  Starting server and watcher');
 
-  try {
-    const watchCmd = 'watchman-make -p "src/**/*.hx" -r "sh watcher.sh"';
-    const serverCmd = 'http-server export/html5/bin --port 1212 -c0';
-    const compServerCmd = 'haxe -v --wait 8000';
+  const watchCmd = "watchman-make -p 'src/**/*.hx' -r 'sh watcher.sh'";
+  const serverCmd = `http-server export/html5/bin --port ${PORT} -c0`;
+  const compServerCmd = 'haxe -v --wait 8000';
 
-    const { stdout, stderr } = await execPromise(
-      `concurrently --hide "1,2" "${watchCmd}" "${serverCmd}" "${compServerCmd}"`
-    );
+  const args = ['concurrently', '--hide', '1,2', watchCmd, serverCmd, compServerCmd];
+  const child = spawn('npx', args);
 
-    logger.info(stdout);
-    logger.info(stderr);
+  child.stdout.on('data', (data) => {
+    process.stdout.write(data);
+  });
 
-  } catch (err) {
-    logger.error(`startConcurrently Error: ${err}`);
-  }
+  child.stderr.on('data', (data) => {
+    logger.info(`child stderr:\n${data}`);
+  });
+
+  child.on('error', (err) => {
+    logger.error(`startConcurrently failed to run: ${err}`);
+  });
+
+  logger.info(`Game running on http://localhost:${PORT}`);
 }
 
 main();

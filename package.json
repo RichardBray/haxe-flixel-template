@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "lix lime build html5 -minify",
-    "start-old": "npm run first-build && npm run concurrently",
     "start": "node bin/startup.js"
   },
   "bin": {
