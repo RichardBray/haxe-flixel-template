@@ -18,7 +18,7 @@ class Logger {
     console.warn(LCWARN, message, ...optionalParams);
   }
   static info(message, ...optionalParams) {
-    console.info(LCINFO, message, ...optionalParams);
+    console.info(message, ...optionalParams);
   }
   static success(message, ...optionalParams) {
     console.info(LCSUCCESS, message, ...optionalParams);

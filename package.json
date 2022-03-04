@@ -6,13 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "lix lime build html5 -minify",
-    "first-build": "lix lime build html5",
-    "concurrently": "concurrently --hide \"1,2\" \"npm run watch\" \"npm run server\" \"npm run comp-server\"",
     "start-old": "npm run first-build && npm run concurrently",
-    "start": "node bin/startup.js",
-    "watch": "watchman-make -p 'src/**/*.hx' -r 'sh watcher.sh'",
-    "server": "http-server export/html5/bin --port 1212 -c0",
-    "comp-server": "haxe -v --wait 8000"
+    "start": "node bin/startup.js"
   },
   "bin": {
     "hft-startup": "bin/startup.js"
