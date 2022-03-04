@@ -1,19 +1,23 @@
-#!/usr/bin/env node
-const {exec} = require('child_process');
-const logger = require('./Logger.js');
+// @ts-check
+import { exec } from 'child_process';
+import logger from './Logger.js';
+import spinner from './Spinner.js';
+
 
 function buildGameForWeb() {
-  exec('lix lime build html5', (err, stdout, stderr) => {
+  exec('lix lime build html5', (err, _stdout, _stderr) => {
     if (err) {
       logger.error(`buildGameForWeb Error: ${err}`);
       return;
     }
-    logger.success(`something ${stdout}`);
+    spinner.stop();
+    logger.success(`🎉 Done!`);
   });
 }
 
 function main() {
-  logger.info('Doing first build of game...');
+  logger.info(`Doing first build of game`);
+  spinner.start();
   buildGameForWeb();
 }
 
