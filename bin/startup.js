@@ -7,15 +7,18 @@ import logger from './Logger.js';
 import spinner from './Spinner.js';
 
 const execPromise = promisify(exec);
-const PORT = 1212;
+const WEB_SERVER_PORT = 1212;
+const COMPILATION_SERVER_PORT = 8000;
 
 async function main() {
-  // await buildGameForWeb();
+  const skipFirstBuildFlag = process.argv[2] === '--skip' || process.argv[2] === '-s';
+
+  if (!skipFirstBuildFlag) await buildGameForWeb();
   startConcurrently();
 }
 
 async function buildGameForWeb() {
-  logger.info('🔨 Doing first build of game');
+  logger.log('🔨 Doing first build of game');
 
   spinner.start();
 
@@ -35,13 +38,13 @@ async function buildGameForWeb() {
 }
 
 function startConcurrently() {
-  logger.info('⏱  Starting server and watcher');
+  logger.log('[ϟ] Starting watcher, web and compilation server');
 
   const watchCmd = "watchman-make -p 'src/**/*.hx' -r 'sh watcher.sh'";
-  const serverCmd = `http-server export/html5/bin --port ${PORT} -c0`;
-  const compServerCmd = 'haxe -v --wait 8000';
+  const serverCmd = `http-server export/html5/bin --port ${WEB_SERVER_PORT} -c0`;
+  const compServerCmd = `haxe -v --wait ${COMPILATION_SERVER_PORT}`;
 
-  const args = ['concurrently', '--hide', '1,2', watchCmd, serverCmd, compServerCmd];
+  const args = ['concurrently', '--hide', '1,2', '--names', 'ϟ, SERVER, COMP', watchCmd, serverCmd, compServerCmd];
   const child = spawn('npx', args);
 
   child.stdout.on('data', (data) => {
@@ -49,14 +52,14 @@ function startConcurrently() {
   });
 
   child.stderr.on('data', (data) => {
-    logger.info(`child stderr:\n${data}`);
+    logger.warn(`child stderr: ${data}`);
   });
 
   child.on('error', (err) => {
     logger.error(`startConcurrently failed to run: ${err}`);
   });
 
-  logger.info(`Game running on http://localhost:${PORT}`);
+  logger.info(`\nGame running on http://localhost:${WEB_SERVER_PORT}\nTo shut down press <CTRL> + C at any time.\n`);
 }
 
 main();
