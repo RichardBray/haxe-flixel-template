@@ -10,7 +10,7 @@ const execPromise = promisify(exec);
 const PORT = 1212;
 
 async function main() {
-  await buildGameForWeb();
+  // await buildGameForWeb();
   startConcurrently();
 }
 
@@ -45,7 +45,7 @@ function startConcurrently() {
   const child = spawn('npx', args);
 
   child.stdout.on('data', (data) => {
-    process.stdout.write(data);
+    process.stdout.write(String(data));
   });
 
   child.stderr.on('data', (data) => {
