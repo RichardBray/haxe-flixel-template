@@ -8,9 +8,6 @@
     "build": "lix lime build html5 -minify",
     "start": "node bin/startup.js"
   },
-  "bin": {
-    "hft-startup": "bin/startup.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RichardBray/haxe-flixel-template.git"
