@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-
 // @ts-check
 import { exec, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
-import logger from './Logger.js';
-import spinner from './Spinner.js';
+import logger from './services/Logger.js';
+import spinner from './services/Spinner.js';
 
 const execPromise = promisify(exec);
 const WEB_SERVER_PORT = 1212;
@@ -40,7 +39,7 @@ async function buildGameForWeb() {
 function startConcurrently() {
   logger.log('[ϟ] Starting watcher, web and compilation server');
 
-  const watchCmd = "watchman-make -p 'src/**/*.hx' -r 'sh watcher.sh'";
+  const watchCmd = "watchman-make -p 'src/**/*.hx' -r 'node bin/watcher.js'";
   const serverCmd = `http-server export/html5/bin --port ${WEB_SERVER_PORT} -c0`;
   const compServerCmd = `haxe -v --wait ${COMPILATION_SERVER_PORT}`;
 
