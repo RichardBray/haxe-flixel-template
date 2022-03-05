@@ -44,7 +44,7 @@ function startConcurrently() {
   const serverCmd = `http-server export/html5/bin --port ${WEB_SERVER_PORT} -c0`;
   const compServerCmd = `haxe -v --wait ${COMPILATION_SERVER_PORT}`;
 
-  const args = ['concurrently', '--hide', '1,2', '--names', 'ϟ, SERVER, COMP', watchCmd, serverCmd, compServerCmd];
+  const args = ['concurrently', '--hide', '1,2', '--names', 'ϟ', watchCmd, serverCmd, compServerCmd];
   const child = spawn('npx', args);
 
   child.stdout.on('data', (data) => {
