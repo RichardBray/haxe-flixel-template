@@ -1,6 +1,6 @@
 {
   "name": "haxe-flixel-template",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "HaxeFlixel game template powered by Lix and Nodejs. The fastest way to start building a HaxeFlixel game.",
   "main": "index.js",
   "type": "module",

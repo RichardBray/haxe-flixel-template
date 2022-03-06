@@ -2,15 +2,19 @@
 // @ts-check
 import { exec, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
+
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
 
 const execPromise = promisify(exec);
 const WEB_SERVER_PORT = 1212;
-const COMPILATION_SERVER_PORT = 8000;
+export const COMPILATION_SERVER_PORT = 8000;
 
 async function main() {
   const skipFirstBuildFlag = process.argv[2] === '--skip' || process.argv[2] === '-s';
+
+  logger.log('  _    _                  ______ _ _          _   _______                   _       _       \r\n | |  | |                |  ____| (_)        | | |__   __|                 | |     | |      \r\n | |__| | __ ___  _____  | |__  | |___  _____| |    | | ___ _ __ ___  _ __ | | __ _| |_ ___ \r\n |  __  |\/ _\` \\ \\\/ \/ _ \\ |  __| | | \\ \\\/ \/ _ \\ |    | |\/ _ \\ \'_ \` _ \\| \'_ \\| |\/ _\` | __\/ _ \\\r\n | |  | | (_| |>  <  __\/ | |    | | |>  <  __\/ |    | |  __\/ | | | | | |_) | | (_| | ||  __\/\r\n |_|  |_|\\__,_\/_\/\\_\\___| |_|    |_|_\/_\/\\_\\___|_|    |_|\\___|_| |_| |_| .__\/|_|\\__,_|\\__\\___|\r\n                                                                     | |                    \r\n                                                                     |_|                    ');
+  logger.log('v.0.2.0\n');
 
   if (!skipFirstBuildFlag) await buildGameForWeb();
   startConcurrently();
