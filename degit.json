@@ -2,5 +2,9 @@
 	{
 		"action": "remove",
 		"files": ["README.md"]
+	},
+	{
+		"action": "remove",
+		"files": ["CHANGELOG.md"]
 	}
 ]
