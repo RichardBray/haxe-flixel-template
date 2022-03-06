@@ -5,10 +5,10 @@ import { promisify } from 'node:util';
 
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
+import * as options from './options.js';
 
 const execPromise = promisify(exec);
-const WEB_SERVER_PORT = 1212;
-export const COMPILATION_SERVER_PORT = 8000;
+
 
 async function main() {
   const skipFirstBuildFlag = process.argv[2] === '--skip' || process.argv[2] === '-s';
@@ -29,7 +29,7 @@ async function buildGameForWeb() {
     const { stderr } = await execPromise('lix lime build html5');
 
     spinner.stop();
-    logger.success(`✅ Done!`);
+    logger.success(`-- ✅ Done!`);
 
     if (stderr) {
       logger.error(stderr);
@@ -44,8 +44,8 @@ function startConcurrently() {
   logger.log('[ϟ] Starting watcher, web and compilation server');
 
   const watchCmd = "watchman-make -p 'src/**/*.hx' -r 'node bin/watcher.js'";
-  const serverCmd = `http-server export/html5/bin --port ${WEB_SERVER_PORT} -c0`;
-  const compServerCmd = `haxe -v --wait ${COMPILATION_SERVER_PORT}`;
+  const serverCmd = `http-server export/html5/bin --port ${options.WEB_SERVER_PORT} -c0`;
+  const compServerCmd = `haxe -v --wait ${options.COMPILATION_SERVER_PORT}`;
 
   const args = ['concurrently', '--hide', '1,2', '--names', 'ϟ', watchCmd, serverCmd, compServerCmd];
   const child = spawn('npx', args);
@@ -62,7 +62,7 @@ function startConcurrently() {
     logger.error(`startConcurrently failed to run: ${err}`);
   });
 
-  logger.info(`\nGame running on http://localhost:${WEB_SERVER_PORT}\nTo shut down press <CTRL> + C at any time.\n`);
+  logger.info(`\nGame running on http://localhost:${options.WEB_SERVER_PORT}\nTo shut down press <CTRL> + C at any time.\n`);
 }
 
 main();

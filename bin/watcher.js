@@ -2,13 +2,15 @@
 // @ts-check
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
+
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
-import {COMPILATION_SERVER_PORT} from './startup.js';
+
+import * as options from './options.js';
 
 const execPromise = promisify(exec);
 
-async function main() {
+async function watcher() {
   await buildGameUsingCompServer();
   spinner.stop();
   displayNotification();
@@ -20,7 +22,7 @@ async function buildGameUsingCompServer() {
   spinner.start();
 
   try {
-    const { stdout, stderr } = await execPromise(`lix lime build html5 -debug --connect ${COMPILATION_SERVER_PORT}`);
+    const { stdout, stderr } = await execPromise(`lix lime build html5 -debug --connect ${options.COMPILATION_SERVER_PORT}`);
 
     if (stdout) {
       logger.log(stdout);
@@ -57,4 +59,4 @@ function displayNotification() {
 
 }
 
-main();
+watcher();
