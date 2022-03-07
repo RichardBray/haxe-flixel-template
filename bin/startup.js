@@ -12,7 +12,7 @@ const compServerCmd = `haxe -v --wait ${options.COMPILATION_SERVER_PORT}`;
 
 async function main() {
   const skipFirstBuildFlag = process.argv[2] === '--skip' || process.argv[2] === '-s';
-  const allowFirstBuild = !skipFirstBuildFlag;
+  const allowFirstBuild = skipFirstBuildFlag ? !skipFirstBuildFlag : options.ALLOW_FIRST_BUILD;
 
   renderTitle();
 
@@ -72,8 +72,8 @@ async function buildGameForWeb() {
 
 function startConcurrently() {
   const logMsg = options.COMP_SERVER_NEW_TAB
-    ? '[ϟ] Starting watcher and server'
-    : '[ϟ] Starting watcher, web and compilation server';
+    ? '[ϟ] Starting file watcher and web server'
+    : '[ϟ] Starting file watcher, web and compilation server';
 
   logger.log(logMsg);
 
@@ -85,11 +85,8 @@ function startConcurrently() {
 
   if (options.COMP_SERVER_NEW_TAB) args.pop();
 
-  const child = spawn('npx', args);
-
-  child.stdout.on('data', (data) => {
-    process.stdout.write(String(data));
-  });
+  const child = spawn('npx', args, { stdio: ['pipe', 'inherit', 'pipe'] });
+  // pupe stdin, inherit stdout, pipe stderr
 
   child.stderr.on('data', (data) => {
     logger.warn(`child stderr: ${data}`);
@@ -100,7 +97,7 @@ function startConcurrently() {
   });
 
   logger.info(
-    `\nGame running on http://localhost:${options.WEB_SERVER_PORT}\nTo shut down press <CTRL> + C at any time.\n`
+    `\nYour game is running on http://localhost:${options.WEB_SERVER_PORT}\nTo shut it down press <CTRL> + C at any time.\n`
   );
 }
 

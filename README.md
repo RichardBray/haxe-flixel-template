@@ -10,7 +10,7 @@
 
 *This template requires [Node.js](https://nodejs.org/en/) (v6 or higher) to be installed to run most of the commands below.*
 
-### 1. Download
+## 1. Download
 
 You can also create a new project based on this template using [degit](https://github.com/Rich-Harris/degit) which will ignore all .git related files.
 ```sh
@@ -18,14 +18,17 @@ npx degit RichardBray/haxe-flixel-template my-flixel-game
 cd my-flixel-game
 ```
 
-### 2. Install dependencies
+## 2. Install dependencies
 
 First [install watchman](https://facebook.github.io/watchman/docs/install.html#buildinstall) locally
 
+MacOS
 ```sh
 brew update
 brew install watchman
 ```
+
+_Sorry I don't know how to isntall watchman on Windows_
 
 Then install package dependencies
 ```sh
@@ -34,7 +37,7 @@ npm i
 npx lix download
 ```
 
-### 3. Build
+## 3. Build
 
 Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild.
 ```sh
@@ -43,3 +46,11 @@ npm start
 
 Navigate to port **1212** in your browser.
 _http://localhost:1212/_
+
+
+## How it works - JS Scripts
+
+There are a few scripts behind the scenes that make running your HaxeFlixel game with this template a little easier.
+
+There are in the `/bin` folder and are currently written in JavaScript but they might change to Haxe art some point in the future.
+### Startup

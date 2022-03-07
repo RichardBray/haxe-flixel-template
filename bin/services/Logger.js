@@ -24,7 +24,7 @@ class Logger {
   }
 
   static log(message, ...optionalParams) {
-    console.info(message, ...optionalParams);
+    console.log(message, ...optionalParams);
   }
 }
 
