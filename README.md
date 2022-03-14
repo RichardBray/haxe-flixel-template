@@ -8,7 +8,7 @@
 
 ---
 
-*This template requires [Node.js](https://nodejs.org/en/) (v6 or higher) to be installed to run most of the commands below.*
+*This template requires [Node.js](https://nodejs.org/en/) (v12 or higher) to be installed to run most of the commands below.*
 
 ## 1. Download
 
@@ -28,7 +28,7 @@ brew update
 brew install watchman
 ```
 
-_Sorry I don't know how to isntall watchman on Windows_
+_Sorry I don't know how to install watchman on Windows_
 
 Then install package dependencies
 ```sh
@@ -47,10 +47,69 @@ npm start
 Navigate to port **1212** in your browser.
 _http://localhost:1212/_
 
+## 4. Tweak
 
-## How it works - JS Scripts
+Open the `package.json` file located in the root.
+Change the `"name:"` and `"description:"` value to the name of your game.
+
+<br />
+
+---
+
+<br />
+
+## How it works
 
 There are a few scripts behind the scenes that make running your HaxeFlixel game with this template a little easier.
 
-There are in the `/bin` folder and are currently written in JavaScript but they might change to Haxe art some point in the future.
+There are in the `/bin` folder and are currently written in plain old **JavaScript** but they might change to Haxe art some point in the future.
+
 ### Startup
+
+This script is triggers on the `npm start` command and does a few things by default:
+
+* opens the compilation server in a new terminal tab
+* builds the game for HTML5
+* starts the watcher and web server
+
+**Compilation server in new tab**
+
+This opens a new tab in your termainal and starts the compilation server. This benefits the speed of the game build since the automated build is cached in the compliation server, therfore subsequent builds will be faster.
+
+Note with this option turned on you would have to manually stop the server, it doesn't stop automatically when the web server is closed.
+
+This option be turned off by going to bin/options.js and setting `COMP_SERVER_NEW_TAB` to `false` which will result in the compilation server starting along with the web server and watcher.
+
+<br/>
+
+**Build for HTML5**
+
+This runs the command `lix lime build html5 -debug` and is connected to the compilation server if it runs in a different tab.
+
+This is particularly useful after starting up a completely different project which has compiled code in the `export` folder.
+
+If the setting to open the compilation server in a different tab when this runs it will cache unchanging code making subsequent builds much faster.
+
+This can be skipped by running:
+```bash
+npm start -- --skip
+#or
+npm start -- -s
+```
+Or by going to bin/options.js and setting `ALLOW_FIRST_BUILD` to `false`
+
+<br/>
+
+**Starting the watcher and web server**
+
+The watcher automatically updates the game when any .hx file is saved. This is done by the [watchman](https://facebook.github.io/watchman/) package and the watcher script which will be explained later.
+
+The web server is runs the game in a given port. This port can be changed by going to bin/options.js and changing `WEB_SERVER_PORT`.
+
+<br/>
+
+### Watcher
+
+This rebuilds the game for html5 whenever there is a change to any .hx file. This is connected to the compilation server so should speed up builds.
+
+A notification is triggered on Mac machines once the game has compiled.
