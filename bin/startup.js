@@ -5,14 +5,14 @@ import { promisify } from 'node:util';
 
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
-import * as options from './options.js';
+import options from './options.js';
 
 const execPromise = promisify(exec);
-const compServerCmd = `haxe -v --wait ${options.COMPILATION_SERVER_PORT}`;
+const compServerCmd = `haxe -v --wait ${options.compilationServerPort}`;
 
 async function main() {
   const skipFirstBuildFlag = process.argv[2] === '--skip' || process.argv[2] === '-s';
-  const allowFirstBuild = !skipFirstBuildFlag;
+  const allowFirstBuild = skipFirstBuildFlag ? !skipFirstBuildFlag : options.allowFirstBuild;
 
   renderTitle();
 
@@ -33,7 +33,7 @@ async function startCompServerInNewTab() {
   logger.log('⚙️  Starting compilation server in new tab');
   try {
     const { stdout, stderr } = await execPromise(`npx ttab -t compServer -G ${compServerCmd}`);
-    await new Promise(resolve => setTimeout(resolve, options.NEW_TAB_TIMEOUT));
+    await new Promise(resolve => setTimeout(resolve, options.newTabTimeout));
     if (stdout) {
       logger.log(stdout);
     }
@@ -52,8 +52,8 @@ async function buildGameForWeb() {
   spinner.start();
 
   try {
-    const cmd = options.COMP_SERVER_NEW_TAB
-      ? `lix lime build html5 -debug --connect ${options.COMPILATION_SERVER_PORT}`
+    const cmd = options.compServerNewTab
+      ? `lix lime build html5 -debug --connect ${options.compilationServerPort}`
       : 'lix lime build html5 -debug';
 
     const { stderr } = await execPromise(cmd);
@@ -71,25 +71,22 @@ async function buildGameForWeb() {
 }
 
 function startConcurrently() {
-  const logMsg = options.COMP_SERVER_NEW_TAB
-    ? '[ϟ] Starting watcher and server'
-    : '[ϟ] Starting watcher, web and compilation server';
+  const logMsg = options.compServerNewTab
+    ? '[ϟ] Starting file watcher and web server'
+    : '[ϟ] Starting file watcher, web and compilation server';
 
   logger.log(logMsg);
 
   const watchCmd = "watchman-make -p 'src/**/*.hx' -r 'node bin/watcher.js'";
-  const serverCmd = `http-server export/html5/bin --port ${options.WEB_SERVER_PORT} -c0`;
-  const compServerCmd = `haxe -v --wait ${options.COMPILATION_SERVER_PORT}`;
+  const serverCmd = `http-server export/html5/bin --port ${options.webServerPort} -c0`;
+  const compServerCmd = `haxe -v --wait ${options.compilationServerPort}`;
 
   const args = ['concurrently', '--hide', '1,2', '--names', 'ϟ', watchCmd, serverCmd, compServerCmd];
 
-  if (options.COMP_SERVER_NEW_TAB) args.pop();
+  if (options.compServerNewTab) args.pop();
 
-  const child = spawn('npx', args);
-
-  child.stdout.on('data', (data) => {
-    process.stdout.write(String(data));
-  });
+  const child = spawn('npx', args, { stdio: ['pipe', 'inherit', 'pipe'] });
+  // pupe stdin, inherit stdout, pipe stderr
 
   child.stderr.on('data', (data) => {
     logger.warn(`child stderr: ${data}`);
@@ -100,7 +97,7 @@ function startConcurrently() {
   });
 
   logger.info(
-    `\nGame running on http://localhost:${options.WEB_SERVER_PORT}\nTo shut down press <CTRL> + C at any time.\n`
+    `\nYour game is running on http://localhost:${options.webServerPort}\nTo shut it down press <CTRL> + C at any time.\n`
   );
 }
 

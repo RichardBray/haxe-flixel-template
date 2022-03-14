@@ -6,7 +6,7 @@ import { promisify } from 'node:util';
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
 
-import * as options from './options.js';
+import options from './options.js';
 
 const execPromise = promisify(exec);
 
@@ -22,7 +22,7 @@ async function buildGameUsingCompServer() {
   spinner.start();
 
   try {
-    const { stdout, stderr } = await execPromise(`lix lime build html5 -debug --connect ${options.COMPILATION_SERVER_PORT}`);
+    const { stdout, stderr } = await execPromise(`lix lime build html5 -debug --connect ${options.compilationServerPort}`);
 
     if (stdout) {
       logger.log(stdout);
