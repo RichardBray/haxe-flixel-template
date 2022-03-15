@@ -16,7 +16,7 @@ async function main() {
 
   renderTitle();
 
-  if (options.COMP_SERVER_NEW_TAB) await startCompServerInNewTab();
+  if (options.compServerNewTab) await startCompServerInNewTab();
   if (allowFirstBuild) await buildGameForWeb();
 
   startConcurrently();

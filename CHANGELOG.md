@@ -2,9 +2,14 @@
 
 ## 0.2.1 (2022-03-15)
 
+### Bugfixes:
+
+* address issue with creating compilation server in new tab
+
 ### Dependency Updates:
 
 * Upgrade Haxe from `4.2.4` to `4.2.5`
+* Upgrade flixel from `4.10.0` to `4.11.0`
 
 ## 0.2.0 (2022-03-06)
 
