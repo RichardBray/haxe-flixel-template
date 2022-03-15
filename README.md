@@ -62,7 +62,7 @@ Change the `"name:"` and `"description:"` value to the name of your game.
 
 There are a few scripts behind the scenes that make running your HaxeFlixel game with this template a little easier.
 
-There are in the `/bin` folder and are currently written in plain old **JavaScript** but they might change to Haxe art some point in the future.
+There are in the `/bin` folder and are currently written in plain old **JavaScript** but they might change to **Haxe** at some point in the future.
 
 ### Startup
 
@@ -113,3 +113,14 @@ The web server is runs the game in a given port. This port can be changed by goi
 This rebuilds the game for html5 whenever there is a change to any .hx file. This is connected to the compilation server so should speed up builds.
 
 A notification is triggered on Mac machines once the game has compiled.
+
+### Github actions
+
+This template contains a github action file that will:
+
+* create a `gh_pages` branch
+* build the game for html5 to that branch tab
+
+**This action is commented out and would need to be uncommented to be enabled.**
+
+By default this will happen whenever code is merged to the `main` branch but this can be changed.

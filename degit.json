@@ -6,5 +6,9 @@
 	{
 		"action": "remove",
 		"files": ["CHANGELOG.md"]
+	},
+	{
+		"action": "remove",
+		"files": [".github/CODEOWNERS"]
 	}
 ]
