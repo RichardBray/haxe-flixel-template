@@ -26,8 +26,4 @@ class GameState extends FlxState {
 		FlxG.mouse.useSystemCursor = true;
 		FlxG.mouse.visible = true;
 	}
-
-	override function update(elapsed: Float) {
-		super.update(elapsed);
-	}
 }
