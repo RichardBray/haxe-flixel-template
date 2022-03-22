@@ -8,17 +8,9 @@
     "build": "lix lime build html5 -minify",
     "start": "node bin/startup.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RichardBray/haxe-flixel-template.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RichardBray/haxe-flixel-template/issues"
-  },
-  "homepage": "https://github.com/RichardBray/haxe-flixel-template#readme",
+  "license": "MIT",
   "dependencies": {
     "concurrently": "^6.4.0",
     "http-server": "^14.0.0",
