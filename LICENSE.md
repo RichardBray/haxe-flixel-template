@@ -1,6 +1,6 @@
 MIT License - Code only License
 
-Copyright (c) 2021 Richard Oliver Bray
+Copyright (c) 2022 Richard Oliver Bray
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
