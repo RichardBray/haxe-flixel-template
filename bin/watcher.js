@@ -13,7 +13,7 @@ const execPromise = promisify(exec);
 async function watcher() {
   await buildGameUsingCompServer();
   spinner.stop();
-  displayNotification();
+  if (options.displayNotification) displayNotification();
   logger.success(`[ϟ] ✅ Done!`);
 }
 
