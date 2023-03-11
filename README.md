@@ -20,6 +20,8 @@ cd my-flixel-game
 
 ## 2. Install dependencies
 
+These steps only need to be applied the first time you download the template.
+
 First [install watchman](https://facebook.github.io/watchman/docs/install.html#buildinstall) locally
 
 MacOS
@@ -32,14 +34,26 @@ _Sorry I don't know how to install watchman on Windows_
 
 Then install package dependencies
 ```sh
+cd my-flixel-game
 npm i -g lix
 npm i
 npx lix download
+npm run dev
+```
+
+### Subsequent installs
+If you've applied the steps above before, this means you have watchman and lix installed globally.
+
+All you need to do is
+```sh
+cd my-flixel-game
+npm i
+npm run dev
 ```
 
 ## 3. Build
 
-Your **.hx** files are watched with [Facebook's watman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild.
+Your **.hx** files are watched with [Facebook's watchman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild.
 ```sh
 npm start
 ```
@@ -74,7 +88,7 @@ This script is triggers on the `npm start` command and does a few things by defa
 
 **Compilation server in new tab**
 
-This opens a new tab in your termainal and starts the compilation server. This benefits the speed of the game build since the automated build is cached in the compliation server, therfore subsequent builds will be faster.
+This opens a new tab in your terminal and starts the compilation server. This benefits the speed of the game build since the automated build is cached in the compilation server, therefore subsequent builds will be faster.
 
 Note with this option turned on you would have to manually stop the server, it doesn't stop automatically when the web server is closed.
 
@@ -124,3 +138,6 @@ This template contains a github action file that will:
 **This action is commented out and would need to be uncommented to be enabled.**
 
 By default this will happen whenever code is merged to the `main` branch but this can be changed.
+
+## Things TO DO
+- Replace watchman with chokidar
