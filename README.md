@@ -141,3 +141,4 @@ By default this will happen whenever code is merged to the `main` branch but thi
 
 ## Things TO DO
 - Replace watchman with chokidar
+- Split scripts out into separate package
