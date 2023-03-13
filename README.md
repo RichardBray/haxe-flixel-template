@@ -80,21 +80,11 @@ There are in the `/bin` folder and are currently written in plain old **JavaScri
 
 ### Startup
 
-This script is triggers on the `npm start` command and does a few things by default:
+This script is triggers on the `npm start` or `npm run dev` command and does a few things by default:
 
-* opens the compilation server in a new terminal tab
 * builds the game for HTML5
-* starts the watcher and web server
+* starts the watcher web and compilation server
 
-**Compilation server in new tab**
-
-This opens a new tab in your terminal and starts the compilation server. This benefits the speed of the game build since the automated build is cached in the compilation server, therefore subsequent builds will be faster.
-
-Note with this option turned on you would have to manually stop the server, it doesn't stop automatically when the web server is closed.
-
-This option be turned off by going to bin/options.js and setting `COMP_SERVER_NEW_TAB` to `false` which will result in the compilation server starting along with the web server and watcher.
-
-<br/>
 
 **Build for HTML5**
 
