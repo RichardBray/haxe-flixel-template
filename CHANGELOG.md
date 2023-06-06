@@ -20,3 +20,10 @@
 * add skip flag to skip first build
 * add option to run comp server in new tab
 * export javascript to es6 instead of es5 lime
+
+## 0.4.0 (2023-06-06)
+
+### Features
+* add engines field to package.json to specify minimum Node version
+* add TestEnvComp.hx file to environment package
+* use 'hf-scripts' package instead of custom scripts

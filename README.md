@@ -8,63 +8,41 @@
 
 ---
 
-*This template requires [Node.js](https://nodejs.org/en/) (v12 or higher) to be installed to run most of the commands below.*
+*This template requires [Node.js](https://nodejs.org/en/) v16 or higher to be installed to run most of the commands below.*
 
 ## 1. Download
 
 You can also create a new project based on this template using [degit](https://github.com/Rich-Harris/degit) which will ignore all .git related files.
 ```sh
-npx degit RichardBray/haxe-flixel-template my-flixel-game
-cd my-flixel-game
+npx degit RichardBray/haxe-flixel-template [my-flixel-game]
+cd [my-flixel-game]
 ```
+_NOTE: Replace `[my-flixel-game]` with the name of your game._
 
 ## 2. Install dependencies
 
 These steps only need to be applied the first time you download the template.
 
-First [install watchman](https://facebook.github.io/watchman/docs/install.html#buildinstall) locally
-
-MacOS
-```sh
-brew update
-brew install watchman
-```
-
-_Sorry I don't know how to install watchman on Windows_
-
 Then install package dependencies
 ```sh
-cd my-flixel-game
+cd [my-flixel-game]
 npm i -g lix
 npm i
 npx lix download
 npm run dev
 ```
 
-### Subsequent installs
-If you've applied the steps above before, this means you have watchman and lix installed globally.
+## 3. Running the project
+If you've applied the steps above before, this means you have lix installed globally.
 
 All you need to do is
 ```sh
-cd my-flixel-game
-npm i
+cd [my-flixel-game]
 npm run dev
 ```
-
-## 3. Build
-
-Your **.hx** files are watched with [Facebook's watchman plugin](https://facebook.github.io/watchman/). Anytime you save a file it will trigger an automatic rebuild.
-```sh
-npm start
-```
-
 Navigate to port **1212** in your browser.
 _http://localhost:1212/_
 
-## 4. Tweak
-
-Open the `package.json` file located in the root.
-Change the `"name:"` and `"description:"` value to the name of your game.
 
 <br />
 
@@ -74,61 +52,54 @@ Change the `"name:"` and `"description:"` value to the name of your game.
 
 ## How it works
 
-There are a few scripts behind the scenes that make running your HaxeFlixel game with this template a little easier.
+The project heavily relies on a package called [hf-scripts](https://www.npmjs.com/package/hf-scripts). This package contains the two main scripts that are used to run the project, `startup` and `comp-server`.
 
-There are in the `/bin` folder and are currently written in plain old **JavaScript** but they might change to **Haxe** at some point in the future.
+### startup
 
-### Startup
-
-This script is triggers on the `npm start` or `npm run dev` command and does a few things by default:
+This script is triggered on the `npm start` or `npm run dev` command and does a few things by default:
 
 * builds the game for HTML5
 * starts the watcher web and compilation server
 
-
 **Build for HTML5**
 
-This runs the command `lix lime build html5 -debug` and is connected to the compilation server if it runs in a different tab.
+This runs the command `lix lime build HTML5 -debug` and is connected to the compilation server if it is run in a different tab.
 
-This is particularly useful after starting up a completely different project which has compiled code in the `export` folder.
+You can run your project without a compilation server by creating a file called `config.json` in the root of your project and using these settings:
 
-If the setting to open the compilation server in a different tab when this runs it will cache unchanging code making subsequent builds much faster.
-
-This can be skipped by running:
-```bash
-npm start -- --skip
-#or
-npm start -- -s
+```json
+{
+  "useCompServer": false
+}
 ```
-Or by going to bin/options.js and setting `ALLOW_FIRST_BUILD` to `false`
+
+The `useCompServer` setting is set to `true` by default. This will cache unchanging code making subsequent builds much faster.
 
 <br/>
 
-**Starting the watcher and web server**
+**The watcher and web server**
 
-The watcher automatically updates the game when any .hx file is saved. This is done by the [watchman](https://facebook.github.io/watchman/) package and the watcher script which will be explained later.
+Your **.hx** files are watched with [Chokadir](https://github.com/paulmillr/chokidar). Anytime you save a file it will trigger an automatic rebuild.
+```sh
+npm start
+```
 
-The web server is runs the game in a given port. This port can be changed by going to bin/options.js and changing `WEB_SERVER_PORT`.
+The web server runs the game in a given port. You can change the port in your `config.json` file with these settings:
 
-<br/>
+```json
+{
+  "webServerPort": 3000
+}
+```
 
-### Watcher
-
-This rebuilds the game for html5 whenever there is a change to any .hx file. This is connected to the compilation server so should speed up builds.
-
-A notification is triggered on Mac machines once the game has compiled.
 
 ### Github actions
 
 This template contains a github action file that will:
 
 * create a `gh_pages` branch
-* build the game for html5 to that branch tab
+* build the game for HTML5 to that branch tab
 
 **This action is commented out and would need to be uncommented to be enabled.**
 
 By default this will happen whenever code is merged to the `main` branch but this can be changed.
-
-## Things TO DO
-- Replace watchman with chokidar
-- Split scripts out into separate package

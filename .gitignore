@@ -2,4 +2,3 @@ export
 node_modules
 dump
 .DS_Store
-package-lock.json

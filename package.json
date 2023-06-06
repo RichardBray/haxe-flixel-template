@@ -15,7 +15,7 @@
     "comp-server": "npx -p hf-scripts comp-server"
   },
   "dependencies": {
-    "hf-scripts": "^0.4.5"
+    "hf-scripts": "^0.5.1"
   },
   "keywords": [],
   "author": "",
