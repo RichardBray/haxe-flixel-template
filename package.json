@@ -1,24 +1,23 @@
 {
   "name": "haxe-flixel-template",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "HaxeFlixel game template powered by Lix and Nodejs. The fastest way to start building a HaxeFlixel game.",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "build": "lix lime build html5 -minify",
-    "start": "node bin/startup.js",
-    "dev": "node bin/startup.js",
-    "comp-server": "node bin/compServer.js"
+    "build-hl": "lix lime test hl",
+    "start": "npx -p hf-scripts startup",
+    "dev": "npm run start",
+    "comp-server": "npx -p hf-scripts comp-server"
+  },
+  "dependencies": {
+    "hf-scripts": "^0.5.1"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "concurrently": "^6.4.0",
-    "http-server": "^14.0.0",
-    "log-update": "^5.0.0"
-  },
-  "engines": {
-    "node": ">=12"
-  }
+  "license": "MIT"
 }
