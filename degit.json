@@ -10,5 +10,9 @@
 	{
 		"action": "remove",
 		"files": [".github/CODEOWNERS"]
+	},
+	{
+		"action": "remove",
+		"files": [".github/FUNDING.yml"]
 	}
 ]
